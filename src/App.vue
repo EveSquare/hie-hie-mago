@@ -1,25 +1,21 @@
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import MainSelector from "./components/MainSelector.vue";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
     MainSelector
   },
   data() {
     return {
-      selectors: [{
-        value: '',
-      }, {
-        value: '',
-      }],
+      selectors: [
+        "親戚", "後輩", "母", "スポンサー", ""
+      ],
     }
   },
   methods: {
     change(index, value) {
-      this.selectors[index].value = value;
+      this.selectors[index] = value;
     },
     removeSelector(index) {
       console.log('removeSelector', index);
@@ -30,14 +26,12 @@ export default {
       this.selectors.splice(index, 1);
     },
     addSelector() {
-      this.selectors.push({
-        value: '',
-      });
+      this.selectors.push('');
     }
   },
   computed: {
     result() {
-      return this.selectors.map(selector => selector.value).join('の');
+      return this.selectors.map(selector => selector).join('の');
     }
   }
 }
@@ -48,6 +42,7 @@ export default {
     <MainSelector
       :key="index"
       :index="index"
+      :selector="selector"
       @change="change"
       @removeSelector="removeSelector"
     />

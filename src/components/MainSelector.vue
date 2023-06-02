@@ -1,5 +1,5 @@
 <template>
-    <select @change="$emit('change', index, $event.target.value)">
+    <select :value="selector" @change="$emit('change', index, $event.target.value)">
         <option value="">🕵🏻‍♂️</option>
         <optgroup label="家族">
             <option>兄弟姉妹</option>
@@ -58,6 +58,10 @@ export default {
     props: {
         index: {
             type: Number,
+            required: true,
+        },
+        selector: {
+            type: String,
             required: true,
         },
     },
